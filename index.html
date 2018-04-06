@@ -11,8 +11,11 @@
   <body>
     <div class="container">
       <h1>Welcome to Bones and Stones Pizza</h1>
+      <div class="well">
+        <h3>The price for your pizza is: $<span id="priceOutput"></span></h3>
+      </div>
       <form id="newPizzaForm">
-        <div class="form-group">
+        <div class="form-group well">
           <p for="pizzaSize">Please select the size of your pizza:</p>
           <input type="radio" name="pizzaSize" value="Large" checked>
           <label for="largePizza">Large (18", feeds 4-6)</label>
@@ -23,23 +26,41 @@
           <input type="radio" name="pizzaSize" value="Small">
           <label for="smallPizza">Small (12", feeds 1-2)</label>
         </div>
-        <div class="form-group">
-          <p>Select all toppings you would like on your pizza:</p>
-          <label for="pepperoni"><input type="checkbox" name="pizzaTopping" id="pepperoni" value="pepperoni">Pepperoni</label>
+        <div class="form-group well">
+          <p>Select all meat toppings you would like on your pizza:</p>
+          <label for="Pepperoni"><input type="checkbox" name="pizzaMeatTopping" value="Pepperoni"> Pepperoni</label>
           <br>
-          <label for="sausage"><input type="checkbox" name="pizzaTopping" id="sausage" value="sausage">Sausage</label>
+          <label for="Sausage"><input type="checkbox" name="pizzaMeatTopping" value="Sausage"> Sausage</label>
           <br>
-          <label for="bellPepper"><input type="checkbox" name="pizzaTopping" id="bellPepper" value="bellPepper">Red Bell Pepper</label>
+          <label for="Chicken"><input type="checkbox" name="pizzaMeatTopping" value="Chicken"> Chicken</label>
           <br>
-          <label for="jalapeno"><input type="checkbox" name="pizzaTopping" id="jalapeno" value="jalapeno">Jalapeno</label>
+          <label for="Ham"><input type="checkbox" name="pizzaMeatTopping" value="Ham"> Ham</label>
           <br>
-          <label for="onion"><input type="checkbox" name="pizzaTopping" id="onion" value="onion">Onion</label>
+          <label for="Bacon"><input type="checkbox" name="pizzaMeatTopping" value="Bacon"> Bacon</label>
+          <br>
+        </div>
+        <div class="form-group well">
+          <p>Select all veggie toppings you would like on your pizza:</p>
+          <label for="Onion"><input type="checkbox" name="pizzaVeggieTopping" value="Onion"> Onion</label>
+          <br>
+          <label for="Mushroom"><input type="checkbox" name="pizzaVeggieTopping" value="Mushroom"> Mushroom</label>
+          <br>
+          <label for="Garlic"><input type="checkbox" name="pizzaVeggieTopping" value="Garlic"> Garlic</label>
+          <br>
+          <label for="Pineapple"><input type="checkbox" name="pizzaVeggieTopping" value="Pineapple"> Pineapple</label>
+          <br>
+          <label for="Jalapeno"><input type="checkbox" name="pizzaVeggieTopping" value="Jalapeno"> Jalapeno</label>
+          <br>
+          <label for="Red Onion"><input type="checkbox" name="pizzaVeggieTopping" value="Red Onion"> Red Onion</label>
+          <br>
+          <label for="Olives"><input type="checkbox" name="pizzaVeggieTopping" value="Olives"> Olives</label>
+          <br>
+          <label for="Red Bell Pepper"><input type="checkbox" name="pizzaVeggieTopping" value="Red Bell Pepper"> Red Bell Pepper</label>
+          <br>
+          <label for="Crushed Red Pepper"><input type="checkbox" name="pizzaVeggieTopping" value="Crushed Red Pepper"> Crushed Red Pepper</label>
         </div>
         <button type="submit" class="button">Add my pizza order</button>
       </form>
-      <div class="">
-        <p>The price for your pizza is: $<span id="priceOutput"></span></p>
-      </div>
       <div class="hider">
         <p id="pizzaOrderOutput"></p>
       </div>

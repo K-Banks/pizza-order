@@ -1,6 +1,7 @@
-function Pizza(size, toppings) {
+function Pizza(size, meatToppings, veggieToppings) {
   this.size = size;
-  this.toppings = toppings;
+  this.meatToppings = meatToppings;
+  this.veggieToppings = veggieToppings;
 }
 
 Pizza.prototype.pricing = function () {
@@ -12,7 +13,8 @@ Pizza.prototype.pricing = function () {
   } else if (this.size === "Large") {
     price += 9;
   }
-  price = price + (this.toppings.length * 0.5);
+  price = price + (this.meatToppings.length * 0.75);
+  price = price + (this.veggieToppings.length * 0.5);
   return price;
 };
 
@@ -20,11 +22,15 @@ $(document).ready(function() {
   $("form#newPizzaForm").submit(function(event) {
     event.preventDefault();
     var size = $("input:radio[name=pizzaSize]:checked").val();
-    var toppings = [];
-    $("input:checkbox[name=pizzaTopping]:checked").each(function(){
-      toppings.push($(this).val());
+    var meatToppings = [];
+    $("input:checkbox[name=pizzaMeatTopping]:checked").each(function(){
+      meatToppings.push($(this).val());
     });
-    var pizza = new Pizza(size, toppings);
+    var veggieToppings = [];
+    $("input:checkbox[name=pizzaVeggieTopping]:checked").each(function(){
+      veggieToppings.push($(this).val());
+    });
+    var pizza = new Pizza(size, meatToppings, veggieToppings);
     var price = pizza.pricing();
     $("span#priceOutput").text(price);
   });
