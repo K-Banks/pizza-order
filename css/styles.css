@@ -12,3 +12,27 @@
   width: 25%;
   display: inline-block;
 }
+h1 {
+  font-style: oblique;
+  font-weight: bold;
+  font-size: 4em;
+  font-family: serif;
+  color: #630404;
+  text-shadow: 2px 2px black;
+}
+img {
+  height: 200px;
+}
+body {
+  background-image: url("http://2guyshazelpark.com/wp-content/uploads/2012/04/twoguys_background5.jpg");
+}
+.well {
+  background-color: #e9b379c7;
+}
+p {
+  font-weight: bold;
+  font-size: 18px;
+}
+input {
+  font-size: 15px;
+}
