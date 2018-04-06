@@ -12,7 +12,8 @@ This website will allow users to create a mock order for multiple pizzas.
 ### Specs
 | Spec | Input | Output |
 | :-------------     | :------------- | :------------- |
-
+| Program will take input for size of pizza and create new pizza object | "Medium" | newPizza = {size: "Medium"} |
+| Program will take input for toppings and add to pizza object | ["Onion","Pepperoni","Bell Pepper"] | newPizza = {size: "Medium", toppings: ["Onion","Pepperoni","Bell Pepper"]} |
 
 
 ## Setup/Installation Requirements
