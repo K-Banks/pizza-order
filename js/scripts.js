@@ -1,10 +1,33 @@
-var orderNumberTracker = 0;
+var totalPriceArray = [];
 
-function Pizza(size, meatToppings, veggieToppings) {
+function toppingCompiler(meatToppings, veggieToppings) {
+  var allToppings = [];
+  for (var i = 0; i < meatToppings.length; i++) {
+    if (meatToppings[i] !== "") {
+      allToppings.push(meatToppings[i]);
+    }
+  }
+  for (var i = 0; i < veggieToppings.length; i++) {
+   if (veggieToppings[i] !== "") {
+     allToppings.push(veggieToppings[i]);
+   }
+ }
+ return allToppings;
+}
+
+function totalPrice(array) {
+  var returnValue = 0;
+  for (var i = 0; i < array.length; i++) {
+    returnValue += array[i];
+  }
+  return returnValue
+}
+
+function Pizza(size, meatToppings, veggieToppings, allToppings) {
   this.size = size;
   this.meatToppings = meatToppings;
   this.veggieToppings = veggieToppings;
-  this.allToppings = (veggieToppings + "," + meatToppings).split(",");
+  this.allToppings = allToppings;
 }
 
 Pizza.prototype.pricing = function() {
@@ -22,25 +45,34 @@ Pizza.prototype.pricing = function() {
 };
 
 $(document).ready(function() {
+  var orderNumberTracker = 0;
   $("form#newPizzaForm").submit(function(event) {
     event.preventDefault();
     var size = $("input:radio[name=pizzaSize]:checked").val();
     var meatToppings = [];
+    var veggieToppings = [];
     $("input:checkbox[name=pizzaMeatTopping]:checked").each(function(){
       meatToppings.push($(this).val());
     });
-    var veggieToppings = [];
     $("input:checkbox[name=pizzaVeggieTopping]:checked").each(function(){
       veggieToppings.push($(this).val());
     });
-    var pizza = new Pizza(size, meatToppings, veggieToppings);
+    var allToppings = toppingCompiler(meatToppings, veggieToppings);
+    if (allToppings[0] === undefined) {
+      allToppings.push("none")
+    }
+    debugger;
+    var pizza = new Pizza(size, meatToppings, veggieToppings, allToppings);
     var price = pizza.pricing();
+    totalPriceArray.push(price);
     $("span#priceOutput").text(price);
-    $("p#pizzaOrderOutput").prepend("<ul>Pizza "+(orderNumberTracker+1)+" price: $"+price+"<li id="+orderNumberTracker+">Size: "+pizza.size+"</li></ul>")
-    // var appendLocator = '"li#' + orderNumberTracker + '"';
+    $("p#pizzaOrderOutput").append("<div class='well'><h4>Pizza "+(orderNumberTracker+1)+"</h4><ul>Price:<li>$"+price+"</li></ul><ul>Size:<li>"+pizza.size+"</li></ul><ul id='"+orderNumberTracker+"'>Toppings:</ul></div>")
     for (var i = 0; i < pizza.allToppings.length; i++) {
-      $("li#"+orderNumberTracker).append("<li>"+pizza.allToppings[i]+"</li>")
+      $("ul#"+orderNumberTracker).append("<li>"+pizza.allToppings[i]+"</li>")
     }
     orderNumberTracker += 1;
+    var totalPriceValue = totalPrice(totalPriceArray);
+    $("span#totalPriceOutput").text(totalPriceValue);
+    $("div.hider").slideDown("slow");
   });
 });
