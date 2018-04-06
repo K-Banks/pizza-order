@@ -13,17 +13,29 @@
       <h1>Welcome to Stones and Bones Pizza</h1>
       <div class="row">
         <div class="mod col-md-8">
+          <div class="hider-delivery well">
+            <h3>Please enter your delivery information:</h3>
+            <form id="deliveryAddress">
+
+            </form>
+          </div>
+          <br>
           <form id="newPizzaForm">
-            <div class="form-group well">
-              <p for="pizzaSize">Please select the size of your pizza:</p>
-              <input type="radio" name="pizzaSize" value="Large" checked>
-              <label for="largePizza">Large (18", feeds 4-6)</label>
-              <br>
-              <input type="radio" name="pizzaSize" value="Medium">
-              <label for="mediumPizza">Medium (16", feeds 3-4)</label>
-              <br>
-              <input type="radio" name="pizzaSize" value="Small">
-              <label for="smallPizza">Small (12", feeds 1-2)</label>
+            <div class="well">
+              <div class="form-group">
+                <p for="pizzaSize">Please select the size of your pizza:</p>
+                <input type="radio" name="pizzaSize" value="Large" checked>
+                <label for="largePizza">Large (18", feeds 4-6)</label>
+                <br>
+                <input type="radio" name="pizzaSize" value="Medium">
+                <label for="mediumPizza">Medium (16", feeds 3-4)</label>
+                <br>
+                <input type="radio" name="pizzaSize" value="Small">
+                <label for="smallPizza">Small (12", feeds 1-2)</label>
+              </div>
+              <div class="form-group">
+                <label for="delivery"><input type="checkbox" name="delivery" id="delivery">  Please check this box if you would like your order delivered (additional cost: $5.00)</label>
+              </div>
             </div>
             <div class="form-group well">
               <p>Select all meat toppings you would like on your pizza:</p>

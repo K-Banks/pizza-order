@@ -24,12 +24,13 @@ function totalPrice(array) {
   return returnValue
 }
 
-function Pizza(size, meatToppings, veggieToppings, allToppings, orderNumber) {
+function Pizza(size, meatToppings, veggieToppings, allToppings, orderNumber, price) {
   this.size = size;
   this.meatToppings = meatToppings;
   this.veggieToppings = veggieToppings;
   this.allToppings = allToppings;
   this.orderNumber = orderNumber;
+  this.price = price;
 }
 
 Pizza.prototype.pricing = function() {
@@ -48,6 +49,7 @@ Pizza.prototype.pricing = function() {
 
 $(document).ready(function() {
   var orderNumberTracker = 1;
+  var deliveryToggle = 0;
   $("form#newPizzaForm").submit(function(event) {
     event.preventDefault();
     var size = $("input:radio[name=pizzaSize]:checked").val();
@@ -64,15 +66,20 @@ $(document).ready(function() {
       allToppings.push("none")
     }
     var pizza = new Pizza(size, meatToppings, veggieToppings, allToppings, orderNumberTracker);
-    pizzaArray.push(pizza);
     var price = pizza.pricing();
+    pizzaArray.push(pizza);
     totalPriceArray.push(price);
+    if ($("#delivery").is(":checked") && deliveryToggle === 0) {
+      $(".hider-delivery").show();
+      deliveryToggle = 1;
+    }
     var totalPriceValue = totalPrice(totalPriceArray);
     $("span#priceOutput").text(price);
     $("p#pizzaOrderOutput").append("<div class='well' id='"+pizza.orderNumber+"'><h4>Pizza "+(pizza.orderNumber)+"</h4><ul>Price:<li>$"+price+"</li></ul><ul>Size:<li>"+pizza.size+"</li></ul><ul id='"+pizza.orderNumber+"'>Toppings:</ul><button type='button' value='Remove' class='button' button'>Remove This Pizza</button></div>")
     $(".button").last().click(function(){
       var targeter = parseInt($($(this).parent()).attr("id"))-1;
-      var objectToRemove = pizzaArray[targeter];
+      var priceTargeter = pricing(pizzaArray[targeter]);
+      totalPriceArray.splice(price,1);
       pizzaArray.splice(targeter,1);
       $($(this).parent()).remove();
       totalPriceValue = totalPrice(totalPriceArray);

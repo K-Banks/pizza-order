@@ -16,6 +16,9 @@ This website will allow users to create a mock order for multiple pizzas.
 | Program will take input for toppings and add to pizza object and display object on DOM | ["Onion","Pepperoni","Bell Pepper"] | newPizza = {size: "Medium", toppings: ["Onion","Pepperoni","Bell Pepper"]} |
 | Program will output a price based on the properties of the pizza object | newPizza = {size: "Medium", toppings: ["Onion","Pepperoni","Bell Pepper"]} | "$17.50" |
 | Program will output total price for all pizzas on single order | "Pizza1 = $4.00, Pizza2 = $3.00" | "Total Price for Order: $7.00" |
+| Program will remove a pizza object from order and update pricing to reflect change when prompted | "Total Price for Order: $7.00 consisting of: Pizza1 = $4.00, Pizza2 = $3.00" | "Total Price for Order: $4.00 consisting of: Pizza1 = $4.00" |
+| Program will check if delivery is requested and update total price | Delivery checkbox is marked | "Total price is: $9.00 ($4.00 for order + $5.00 for delivery fee)" |
+| Program will take delivery information and output information beneath total price | "3 Smokethorn" + "Irvine" + "GA" + "92753" | "Deliver to: 3 Smokethorn, Irvine, GA 92753" |
 
 
 ## Setup/Installation Requirements
