@@ -9,6 +9,40 @@
     <title>Pizza Order</title>
   </head>
   <body>
-
+    <div class="container">
+      <h1>Welcome to Bones and Stones Pizza</h1>
+      <form id="newPizzaForm">
+        <div class="form-group">
+          <p for="pizzaSize">Please select the size of your pizza:</p>
+          <input type="radio" name="pizzaSize" value="Large" checked>
+          <label for="largePizza">Large (18", feeds 4-6)</label>
+          <br>
+          <input type="radio" name="pizzaSize" value="Medium">
+          <label for="mediumPizza">Medium (16", feeds 3-4)</label>
+          <br>
+          <input type="radio" name="pizzaSize" value="Small">
+          <label for="smallPizza">Small (12", feeds 1-2)</label>
+        </div>
+        <div class="form-group">
+          <p>Select all toppings you would like on your pizza:</p>
+          <label for="pepperoni"><input type="checkbox" name="pizzaTopping" id="pepperoni" value="pepperoni">Pepperoni</label>
+          <br>
+          <label for="sausage"><input type="checkbox" name="pizzaTopping" id="sausage" value="sausage">Sausage</label>
+          <br>
+          <label for="bellPepper"><input type="checkbox" name="pizzaTopping" id="bellPepper" value="bellPepper">Red Bell Pepper</label>
+          <br>
+          <label for="jalapeno"><input type="checkbox" name="pizzaTopping" id="jalapeno" value="jalapeno">Jalapeno</label>
+          <br>
+          <label for="onion"><input type="checkbox" name="pizzaTopping" id="onion" value="onion">Onion</label>
+        </div>
+        <button type="submit" class="button">Add my pizza order</button>
+      </form>
+      <div class="">
+        <p>The price for your pizza is: $<span id="priceOutput"></span></p>
+      </div>
+      <div class="hider">
+        <p id="pizzaOrderOutput"></p>
+      </div>
+    </div>
   </body>
 </html>
