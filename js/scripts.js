@@ -1,4 +1,5 @@
 var totalPriceArray = [];
+var pizzaArray = [];
 
 function toppingCompiler(meatToppings, veggieToppings) {
   var allToppings = [];
@@ -23,11 +24,12 @@ function totalPrice(array) {
   return returnValue
 }
 
-function Pizza(size, meatToppings, veggieToppings, allToppings) {
+function Pizza(size, meatToppings, veggieToppings, allToppings, orderNumber) {
   this.size = size;
   this.meatToppings = meatToppings;
   this.veggieToppings = veggieToppings;
   this.allToppings = allToppings;
+  this.orderNumber = orderNumber;
 }
 
 Pizza.prototype.pricing = function() {
@@ -61,12 +63,12 @@ $(document).ready(function() {
     if (allToppings[0] === undefined) {
       allToppings.push("none")
     }
-    debugger;
-    var pizza = new Pizza(size, meatToppings, veggieToppings, allToppings);
+    var pizza = new Pizza(size, meatToppings, veggieToppings, allToppings, orderNumberTracker);
+    pizzaArray.push(pizza);
     var price = pizza.pricing();
     totalPriceArray.push(price);
     $("span#priceOutput").text(price);
-    $("p#pizzaOrderOutput").append("<div class='well'><h4>Pizza "+(orderNumberTracker+1)+"</h4><ul>Price:<li>$"+price+"</li></ul><ul>Size:<li>"+pizza.size+"</li></ul><ul id='"+orderNumberTracker+"'>Toppings:</ul></div>")
+    $("p#pizzaOrderOutput").append("<div class='well "+orderNumberTracker+"'><h4>Pizza "+(orderNumberTracker+1)+"</h4><ul>Price:<li>$"+price+"</li></ul><ul>Size:<li>"+pizza.size+"</li></ul><ul id='"+orderNumberTracker+"'>Toppings:</ul></div>")
     for (var i = 0; i < pizza.allToppings.length; i++) {
       $("ul#"+orderNumberTracker).append("<li>"+pizza.allToppings[i]+"</li>")
     }
