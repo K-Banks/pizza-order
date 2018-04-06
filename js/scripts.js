@@ -69,21 +69,20 @@ $(document).ready(function() {
     totalPriceArray.push(price);
     var totalPriceValue = totalPrice(totalPriceArray);
     $("span#priceOutput").text(price);
-    $("p#pizzaOrderOutput").append("<div class='"+price+" well' id='"+pizza.orderNumber+"'><h4>Pizza "+(pizza.orderNumber)+"</h4><ul>Price:<li>$"+price+"</li></ul><ul>Size:<li>"+pizza.size+"</li></ul><ul id='"+pizza.orderNumber+"'>Toppings:</ul><button type='button' value='Remove' class='"+pizza.orderNumber+" button'>Remove This Pizza</button></div>")
+    $("p#pizzaOrderOutput").append("<div class='well' id='"+pizza.orderNumber+"'><h4>Pizza "+(pizza.orderNumber)+"</h4><ul>Price:<li>$"+price+"</li></ul><ul>Size:<li>"+pizza.size+"</li></ul><ul id='"+pizza.orderNumber+"'>Toppings:</ul><button type='button' value='Remove' class='button' button'>Remove This Pizza</button></div>")
     $(".button").last().click(function(){
-      var targeter = $(this).parent();
-      var negPrice = "-" + $($(this).parent()).attr("class");
-      debugger;
-      totalPriceArray.push(parseInt(negPrice));
-      $(targeter).remove();
+      var targeter = parseInt($($(this).parent()).attr("id"))-1;
+      var objectToRemove = pizzaArray[targeter];
+      pizzaArray.splice(targeter,1);
+      $($(this).parent()).remove();
       totalPriceValue = totalPrice(totalPriceArray);
       $("span#totalPriceOutput").text(totalPriceValue);
     });
     for (var i = 0; i < pizza.allToppings.length; i++) {
       $("ul#"+orderNumberTracker).append("<li>"+pizza.allToppings[i]+"</li>")
     }
-    orderNumberTracker += 1;
     $("span#totalPriceOutput").text(totalPriceValue);
     $("div.hider").slideDown("slow");
+    orderNumberTracker += 1;
   });
 });
