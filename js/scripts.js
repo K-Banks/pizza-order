@@ -19,18 +19,18 @@ function toppingCompiler(meatToppings, veggieToppings) {
 function totalPrice(array) {
   var returnValue = 0;
   for (var i = 0; i < array.length; i++) {
-    returnValue += array[i];
+    returnValue += parseFloat(array[i]);
   }
   return returnValue
 }
 
-function Pizza(size, meatToppings, veggieToppings, allToppings, orderNumber, price) {
+function Pizza(size, meatToppings, veggieToppings, allToppings, orderNumber) {
   this.size = size;
   this.meatToppings = meatToppings;
   this.veggieToppings = veggieToppings;
   this.allToppings = allToppings;
   this.orderNumber = orderNumber;
-  this.price = price;
+  this.price = 0;
 }
 
 Pizza.prototype.pricing = function() {
@@ -44,6 +44,8 @@ Pizza.prototype.pricing = function() {
   }
   price = price + (this.meatToppings.length * 0.75);
   price = price + (this.veggieToppings.length * 0.5);
+  price = price.toFixed(2);
+  this.price = price;
   return price;
 };
 
@@ -67,28 +69,35 @@ $(document).ready(function() {
     }
     var pizza = new Pizza(size, meatToppings, veggieToppings, allToppings, orderNumberTracker);
     var price = pizza.pricing();
+    console.log(pizza.price);
     pizzaArray.push(pizza);
     totalPriceArray.push(price);
     if ($("#delivery").is(":checked") && deliveryToggle === 0) {
       $(".hider-delivery").show();
-      deliveryToggle = 1;
+      deliveryToggle = 5;
+    } else if (deliveryToggle === 5 && $("#delivery").is(":checked") === false) {
+      deliveryToggle = 0;
+      $(".hider-delivery").hide();
     }
     var totalPriceValue = totalPrice(totalPriceArray);
     $("span#priceOutput").text(price);
-    $("p#pizzaOrderOutput").append("<div class='well' id='"+pizza.orderNumber+"'><h4>Pizza "+(pizza.orderNumber)+"</h4><ul>Price:<li>$"+price+"</li></ul><ul>Size:<li>"+pizza.size+"</li></ul><ul id='"+pizza.orderNumber+"'>Toppings:</ul><button type='button' value='Remove' class='button' button'>Remove This Pizza</button></div>")
+    $("p#pizzaOrderOutput").append("<div class='well' id='"+pizza.orderNumber+"'><h4>Pizza "+(pizza.orderNumber)+"</h4><ul>Price:<li>$"+price+"</li></ul><ul>Size:<li>"+pizza.size+"</li></ul><ul class="+orderNumberTracker+">Toppings:</ul><button type='button' value='Remove' class='button' button'>Remove This Pizza</button></div>")
     $(".button").last().click(function(){
-      var targeter = parseInt($($(this).parent()).attr("id"))-1;
-      var priceTargeter = pricing(pizzaArray[targeter]);
-      totalPriceArray.splice(price,1);
+      var targeter = parseFloat($($(this).parent()).attr("id"))-1;
+      var priceTargeter = (pizzaArray[targeter].price);
+      debugger
+      totalPriceArray[targeter] = totalPriceArray[targeter].replace(priceTargeter,"0");
       pizzaArray.splice(targeter,1);
       $($(this).parent()).remove();
       totalPriceValue = totalPrice(totalPriceArray);
-      $("span#totalPriceOutput").text(totalPriceValue);
+      $("span#totalPriceOutput").text(totalPriceValue.toFixed(2));
     });
-    for (var i = 0; i < pizza.allToppings.length; i++) {
-      $("ul#"+orderNumberTracker).append("<li>"+pizza.allToppings[i]+"</li>")
+    var toppingTracker = pizza.allToppings.length
+    for (var i = 0; i < toppingTracker; i++) {
+      var appender = pizza.allToppings[i];
+      $("ul."+orderNumberTracker).append("<li>"+appender+"</li>")
     }
-    $("span#totalPriceOutput").text(totalPriceValue);
+    $("span#totalPriceOutput").text((totalPriceValue + deliveryToggle).toFixed(2));
     $("div.hider").slideDown("slow");
     orderNumberTracker += 1;
   });
