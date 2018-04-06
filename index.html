@@ -13,15 +13,24 @@
       <h1>Welcome to Stones and Bones Pizza</h1>
       <div class="row">
         <div class="mod col-md-8">
-          <div class="hider-delivery well">
-            <h3>Please enter your delivery information:</h3>
-            <form id="deliveryAddress">
-
-            </form>
-          </div>
-          <br>
-          <form id="newPizzaForm">
             <div class="well">
+              <div class="well">
+                <label for="delivery"><input type="checkbox" name="delivery" id="delivery">  Please check this box if you would like your order delivered (additional cost: $5.00)</label>
+                <div class="hider-delivery">
+                  <h3>Please enter your delivery information:</h3>
+                  <form id="deliveryAddress">
+                    <label for="deliveryName">Enter your full name:</label>
+                    <input type="text" id="deliveryName" class="form-control">
+                    <label for="deliveryInfo">Enter your delivery address:</label>
+                    <input type="text" id="deliveryStreet" class="form-control" placeholder="Street information (ex: 3 Smokethorn)">
+                    <input type="text" id="deliveryCity" class="form-control localAddress" placeholder="City (ex: Irvine)">
+                    <input type="text" id="deliveryState" class="form-control nationalAddress" placeholder="State">
+                    <input type="number" id="deliveryZip" class="form-control nationalAddress" placeholder="Zipcode">
+                    <button type="submit" class="button">Update Delivery Information</button>
+                  </form>
+                </div>
+              </div>
+              <form id="newPizzaForm">
               <div class="form-group">
                 <p for="pizzaSize">Please select the size of your pizza:</p>
                 <input type="radio" name="pizzaSize" value="Large" checked>
@@ -32,9 +41,6 @@
                 <br>
                 <input type="radio" name="pizzaSize" value="Small">
                 <label for="smallPizza">Small (12", feeds 1-2)</label>
-              </div>
-              <div class="form-group">
-                <label for="delivery"><input type="checkbox" name="delivery" id="delivery">  Please check this box if you would like your order delivered (additional cost: $5.00)</label>
               </div>
             </div>
             <div class="form-group well">

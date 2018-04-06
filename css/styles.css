@@ -4,3 +4,11 @@
 .priceFont {
   color: blue;
 }
+.localAddress {
+  width: 40%;
+  display: inline-block;
+}
+.nationalAddress {
+  width: 25%;
+  display: inline-block;
+}
