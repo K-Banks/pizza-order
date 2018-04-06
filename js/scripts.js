@@ -52,6 +52,7 @@ Pizza.prototype.pricing = function() {
 $(document).ready(function() {
   var orderNumberTracker = 1;
   var deliveryToggle = 0;
+
   $("form#newPizzaForm").submit(function(event) {
     event.preventDefault();
     var size = $("input:radio[name=pizzaSize]:checked").val();
@@ -100,5 +101,14 @@ $(document).ready(function() {
     $("span#totalPriceOutput").text((totalPriceValue + deliveryToggle).toFixed(2));
     $("div.hider").slideDown("slow");
     orderNumberTracker += 1;
+  });
+
+  $("form#deliveryAddress").submit(function(event) {
+    event.preventDefault();
+    var name = $("input#deliveryName").val();
+    var address = $("input#deliveryStreet").val() + ", " + $("input#deliveryCity").val() + ", " + $("input#deliveryState").val() + " " + $("input#deliveryZip").val();
+    $("li#name").text(name);
+    $("li#address").text(address);
+    $("div.hider-address-review").show();
   });
 });
