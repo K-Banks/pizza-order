@@ -17,11 +17,15 @@ Pizza.prototype.pricing = function () {
 };
 
 $(document).ready(function() {
-  $("form#newPizzaForm").submit(fucntion(event) {
+  $("form#newPizzaForm").submit(function(event) {
     event.preventDefault();
     var size = $("input:radio[name=pizzaSize]:checked").val();
-    var toppings = $("input:checkbox[name=pizzaTopping]:checked").each(function(temporary){
-
+    var toppings = [];
+    $("input:checkbox[name=pizzaTopping]:checked").each(function(){
+      toppings.push($(this).val());
     });
+    var pizza = new Pizza(size, toppings);
+    var price = pizza.pricing();
+    $("span#priceOutput").text(price);
   });
 });
