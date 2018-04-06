@@ -13,8 +13,9 @@ This website will allow users to create a mock order for multiple pizzas.
 | Spec | Input | Output |
 | :-------------     | :------------- | :------------- |
 | Program will take input for size of pizza and create new pizza object | "Medium" | newPizza = {size: "Medium"} |
-| Program will take input for toppings and add to pizza object | ["Onion","Pepperoni","Bell Pepper"] | newPizza = {size: "Medium", toppings: ["Onion","Pepperoni","Bell Pepper"]} |
+| Program will take input for toppings and add to pizza object and display object on DOM | ["Onion","Pepperoni","Bell Pepper"] | newPizza = {size: "Medium", toppings: ["Onion","Pepperoni","Bell Pepper"]} |
 | Program will output a price based on the properties of the pizza object | newPizza = {size: "Medium", toppings: ["Onion","Pepperoni","Bell Pepper"]} | "$17.50" |
+| Program will output total price for all pizzas on single order | "Pizza1 = $4.00, Pizza2 = $3.00" | "Total Price for Order: $7.00" |
 
 
 ## Setup/Installation Requirements
