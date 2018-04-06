@@ -47,7 +47,7 @@ Pizza.prototype.pricing = function() {
 };
 
 $(document).ready(function() {
-  var orderNumberTracker = 0;
+  var orderNumberTracker = 1;
   $("form#newPizzaForm").submit(function(event) {
     event.preventDefault();
     var size = $("input:radio[name=pizzaSize]:checked").val();
@@ -67,13 +67,22 @@ $(document).ready(function() {
     pizzaArray.push(pizza);
     var price = pizza.pricing();
     totalPriceArray.push(price);
+    var totalPriceValue = totalPrice(totalPriceArray);
     $("span#priceOutput").text(price);
-    $("p#pizzaOrderOutput").append("<div class='well "+orderNumberTracker+"'><h4>Pizza "+(orderNumberTracker+1)+"</h4><ul>Price:<li>$"+price+"</li></ul><ul>Size:<li>"+pizza.size+"</li></ul><ul id='"+orderNumberTracker+"'>Toppings:</ul></div>")
+    $("p#pizzaOrderOutput").append("<div class='"+price+" well' id='"+pizza.orderNumber+"'><h4>Pizza "+(pizza.orderNumber)+"</h4><ul>Price:<li>$"+price+"</li></ul><ul>Size:<li>"+pizza.size+"</li></ul><ul id='"+pizza.orderNumber+"'>Toppings:</ul><button type='button' value='Remove' class='"+pizza.orderNumber+" button'>Remove This Pizza</button></div>")
+    $(".button").last().click(function(){
+      var targeter = $(this).parent();
+      var negPrice = "-" + $($(this).parent()).attr("class");
+      debugger;
+      totalPriceArray.push(parseInt(negPrice));
+      $(targeter).remove();
+      totalPriceValue = totalPrice(totalPriceArray);
+      $("span#totalPriceOutput").text(totalPriceValue);
+    });
     for (var i = 0; i < pizza.allToppings.length; i++) {
       $("ul#"+orderNumberTracker).append("<li>"+pizza.allToppings[i]+"</li>")
     }
     orderNumberTracker += 1;
-    var totalPriceValue = totalPrice(totalPriceArray);
     $("span#totalPriceOutput").text(totalPriceValue);
     $("div.hider").slideDown("slow");
   });
