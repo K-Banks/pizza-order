@@ -23,7 +23,7 @@ This website will allow users to create a mock order for multiple pizzas.
 
 ## Setup/Installation Requirements
 
-* _Navigate to http://k-banks.github.io/pizza-order in a web browser_
+* _Navigate to http://k-banks.github.io/pizza-order/ in a web browser_
 * _Enter the number you wish the program to count to and press the submit button._
 * _Alternatively, clone the repository from https://github.com/K-Banks/pizza-order _
 * _Open the index.html file in a web browser._
